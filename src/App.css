@@ -1,0 +1,37 @@
+/* write your css here */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+html,body{
+    overflow-x: hidden;
+}
+
+.homepage_bg{
+    background-image: url("./assets/Images/bghome.svg");
+}
+
+.cartDescription {
+    color: black;       /* Replace with actual color code for "rich-black-800" */
+    font-weight: bold;    /* Correct property to make text bold */
+}
+
+.cartDescription2 {
+    color: white;       /* Replace with actual color code for "rich-black-800" */
+}
+
+.botton{
+    color:#838894;
+}
+
+html {
+  overflow-y: scroll; /* Always reserve space for scrollbar */
+    
+}
+
+input:-webkit-autofill {
+  box-shadow: 0 0 0px 1000px #1c1f27 inset !important;
+  -webkit-text-fill-color: #ffffff !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
