@@ -23,7 +23,7 @@ app.use(cookieParser())
 
 const allowedOrigins = [
   "http://localhost:3000",
-  "https://studynotion-frontend-ruddy-alpha.vercel.app",
+   "https://studynotion-frontend-eight-psi.vercel.app",
 ];
 
 app.use(
