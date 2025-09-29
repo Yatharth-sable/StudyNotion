@@ -34,7 +34,6 @@ export default function ChipInput({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chips]);
 
-  
 
   // Function to handle user input when chips are added
   const handleKeyDown = (event) => {
@@ -66,26 +65,19 @@ export default function ChipInput({
   // Render the component
   return (
     <div className="flex flex-col space-y-2">
-      {/* Render the label for the input */}
       <label className="text-sm text-richblack-5" htmlFor={name}>
         {label} <sup className="text-pink-200">*</sup>
       </label>
-      {/* Render the chips and input */}
       <div className="flex w-full flex-wrap gap-y-2">
-        {/* Map over the chips array and render each chip */}
         {chips.map((chip, index) => (
           <div
             key={index}
-            className="m-1 flex items-center rounded-full bg-yellow-50 px-2  py-1 text-sm text-black"
-          >
-            {/* Render the chip value */}
+            className="m-1 flex items-center rounded-full bg-yellow-50 px-2  py-1 text-sm text-black">
             {chip}
-            {/* Render the button to delete the chip */}
             <button
               type="button"
               className="ml-2 focus:outline-none"
-              onClick={() => handleDeleteChip(index)}
-            >
+              onClick={() => handleDeleteChip(index)}>
               <MdClose className="text-sm" />
             </button>
           </div>

@@ -62,10 +62,12 @@ const CourseInformationForm = () => {
       currentValues.courseTitle !== course.courseName ||
       currentValues.courseShortDesc !== course.courseDescription ||
       currentValues.coursePrice !== course.price ||
-     JSON.stringify(currentValues.courseTags) !== JSON.stringify(course.tags) ||
+      JSON.stringify(currentValues.courseTags) !==
+        JSON.stringify(course.tags) ||
       currentValues.courseBenefits !== course.whatYouWillLearn ||
       currentValues.courseCategory !== course.category?._id ||
-      currentValues.courseRequirements.toString() !== course.instructions.toString() ||
+      currentValues.courseRequirements.toString() !==
+        course.instructions.toString() ||
       currentValues.courseImage !== course.thumbnail
     )
       return true;
@@ -129,7 +131,7 @@ const CourseInformationForm = () => {
     formData.append("courseDescription", data.courseShortDesc);
     formData.append("price", data.coursePrice);
     formData.append("tags", JSON.stringify(data.courseTags));
-    formData.append("whatYouWillLearn", data.courseBenefits); 
+    formData.append("whatYouWillLearn", data.courseBenefits);
     formData.append("status", COURSE_STATUS.DRAFT);
     formData.append("category", data.courseCategory);
     formData.append("instructions", JSON.stringify(data.courseRequirements));
@@ -138,12 +140,11 @@ const CourseInformationForm = () => {
     setLoading(true);
     const result = await addCourseDetails(formData, token);
     console.log("API raw result:", result);
-    
+
     if (result) {
       dispatch(setStep(2));
       dispatch(setCourse(result));
-      console.log("going to step 2")
-      
+      console.log("going to step 2");
     }
     setLoading(false);
   };
@@ -303,12 +304,11 @@ const CourseInformationForm = () => {
           </button>
         )}
 
-      <IconBtn
-  disabled={loading}
-  type="submit"
-  text={loading ? "Saving..." : !editCourse ? "Next" : "Save Changes"}
-/>
-
+        <IconBtn
+          disabled={loading}
+          type="submit"
+          text={loading ? "Saving..." : !editCourse ? "Next" : "Save Changes"}
+        />
       </div>
     </form>
   );

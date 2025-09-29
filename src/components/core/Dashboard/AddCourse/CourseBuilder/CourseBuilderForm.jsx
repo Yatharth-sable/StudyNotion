@@ -23,6 +23,7 @@ const CourseBuilderForm = () => {
     setValue,
     formState: { errors },
   } = useForm();
+
   const [editSectionName, setEditSectionName] = useState(null);
   const { course } = useSelector((state) => state.course);
   const dispatch = useDispatch();
@@ -53,10 +54,9 @@ const CourseBuilderForm = () => {
       );
     }
 
-    if (result) {
-  dispatch(setCourse(result.updatedCourseDetails));
-}
-
+    // if (result) {
+    //   dispatch(setCourse(result.updatedCourseDetails));
+    // } //  this comment on 23/9/25 
 
     if (result) {
       dispatch(setCourse(result));
@@ -65,8 +65,6 @@ const CourseBuilderForm = () => {
     }
     setLoading(false);
   };
-
-  
 
   const goBack = () => {
     dispatch(setStep(1));
@@ -78,20 +76,23 @@ const CourseBuilderForm = () => {
     setValue("sectionName", "");
   };
 
-const goToNext = () => {
-  if (!course?.courseContent || course.courseContent.length === 0) {
-    toast.error("Please add atleast one Section");
-    return;
-  }
+  const goToNext = () => {
+    if (!course?.courseContent || course.courseContent.length === 0) {
+      toast.error("Please add atleast one Section");
+      return;
+    }
 
-  if (course.courseContent.some((section) => !section.subSection || section.subSection.length === 0)) {
-    toast.error("Please add atleast one lecture in each section");
-    return;
-  }
+    if (
+      course.courseContent.some(
+        (section) => !section.subSection || section.subSection.length === 0
+      )
+    ) {
+      toast.error("Please add atleast one lecture in each section");
+      return;
+    }
 
-  dispatch(setStep(3));
-};
-
+    dispatch(setStep(3));
+  };
 
   const handleChangeEditSectionName = (sectionId, sectionName) => {
     if (editSectionName === sectionId) {
@@ -160,7 +161,6 @@ const goToNext = () => {
       {course?.courseContent?.length > 0 && (
         <NestedView handleChangeEditSectionName={handleChangeEditSectionName} />
       )}
-
 
       {/* Navigation */}
       <div className="mt-6 flex justify-end gap-x-3">

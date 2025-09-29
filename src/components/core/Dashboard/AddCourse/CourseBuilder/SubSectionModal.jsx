@@ -11,13 +11,8 @@ import {
   updateSubSection,
 } from "../../../../../services/operation/courseDetailsApi";
 
-const SubSectionModal = ({
-  modalData,
-  setModalData,
-  add = false,
-  view = false,
-  edit = false,
-}) => {
+const SubSectionModal = ({ modalData,setModalData,add = false,view = false,edit = false,}) => {
+
   const {
     register,
     handleSubmit,
