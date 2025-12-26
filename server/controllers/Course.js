@@ -39,7 +39,6 @@ exports.createCourse = async (req, res) => {
     // auth krte time user me id daal di thi ab usko fetch krke details nikal rhe hai
     const userId = req.user.id;
     const instructorDetails = await User.findById(userId);
-    console.log("Insturctor Details ", instructorDetails);
     // verify that userid and InstuctorDetails.id are same  or different?
 
     if (!instructorDetails) {
@@ -130,10 +129,9 @@ exports.showAllCourses = async (req, res) => {
       data: allCourses,
     });
   } catch (err) {
-    console.log(err);
     res.status(400).json({
       success: false,
-      message: "Cannot fetch Course data",
+      message: err.message,
     });
   }
 };
@@ -173,7 +171,6 @@ exports.getCourseDetails = async (req, res) => {
       courseDetails: courseDetails,
     });
   } catch (err) {
-    console.log(err.message);
     return res.status(400).json({
       success: false,
       message: "Course: Failed to fetch the all course details",
@@ -266,7 +263,6 @@ exports.getInstructorCourses = async (req, res) => {
       courses,
     });
   } catch (error) {
-    console.error("Error in getInstructorCourses:", error);
     return res.status(500).json({
       success: false,
       message: "Could not fetch instructor courses",
@@ -318,7 +314,6 @@ exports.deleteCourse = async (req, res) => {
       message: "Course deleted successfully",
     });
   } catch (error) {
-    console.error(error);
     return res.status(500).json({
       success: false,
       message: "Server error",
@@ -374,11 +369,12 @@ exports.getFullCourseDetails = async (req, res) => {
       .exec();
 
     let courseProgressCount = await CourseProgress.findOne({
-      courseID: courseId,
+      // courseID: courseId,
+      courseId: courseId,
       userId: userId,
     });
 
-    console.log("courseProgressCount : ", courseProgressCount);
+
 
     if (!courseDetails) {
       return res.status(400).json({

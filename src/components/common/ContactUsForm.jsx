@@ -16,7 +16,6 @@ const ContactUsForm = () => {
     try {
       setLoading(true);
       const response = { status: "ok" };
-      console.log("Loging Response", response);
     } catch (err) {
       console.log("Error", err.message);
       setLoading(false);

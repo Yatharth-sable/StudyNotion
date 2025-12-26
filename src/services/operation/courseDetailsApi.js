@@ -50,7 +50,6 @@ export const fetchCourseDetails = async (courseId) => {
     const response = await apiConnector("POST", COURSE_DETAILS_API, {
       courseId,
     });
-    console.log("COURSE_DETAILS_API API RESPONSE............", response);
 
     if (!response.data.success) {
       throw new Error(response.data.message);
@@ -187,7 +186,6 @@ export const updateSection = async (data, token) => {
     const response = await apiConnector("POST", UPDATE_SECTION_API, data, {
       Authorization: `Bearer ${token}`,
     });
-    console.log("UPDATE SECTION API RESPONSE............", response);
     if (!response?.data?.success) {
       throw new Error("Could Not Update Section");
     }
@@ -208,7 +206,6 @@ export const updateSubSection = async (data, token) => {
     const response = await apiConnector("POST", UPDATE_SUBSECTION_API, data, {
       Authorization: `Bearer ${token}`,
     });
-    console.log("UPDATE SUB-SECTION API RESPONSE............", response);
     if (!response?.data?.success) {
       throw new Error("Could Not Update Lecture");
     }

@@ -6,6 +6,7 @@
   const mailSender = require("../utils/mailSender");
   const Profile = require("../models/Profile")
   const { passwordUpdated } = require("../mail/templates/passwordUpdate");
+  
 
 
   require("dotenv").config();
@@ -33,14 +34,14 @@
         lowerCaseAlphabets: false,
         specialChars: false,
       });
-      console.log("Otp genrated", otp);
+      console.log("Otp genrated");
 
       // check unique otp or not
       const result = await OTP.findOne({ otp: otp });
 
       // jb tk unique otp nhi milta tb tk yaha check krege
       while (result) {
-        otp = otpGenrator(6, {
+        otp = otpGenrator.generate(6, {
           upperCaseAlphabets: false,
           lowerCaseAlphabets: false,
           specialChars: false,
@@ -51,7 +52,6 @@
       const otpPayload = { email, otp };
       // create an entry in db
       const otpBody = await OTP.create(otpPayload);
-      console.log(otpBody);
 
       // return response successfully
       res.status(200).json({
@@ -60,7 +60,6 @@
         otp,
       });
     } catch (err) {
-      console.log(err);
       return res.status(500).json({
         success: false,
         message: err.message,
@@ -108,6 +107,7 @@
 
       // check user already exist or not
       const extingishUser = await User.findOne({ email });
+      
       if (extingishUser) {
         return res.status(403).json({
           success: false,
@@ -118,7 +118,7 @@
       const recentOtp = await OTP.find({ email })
         .sort({ createdAt: -1 })
         .limit(1);
-      console.log(recentOtp);
+
       // validate otp
       if (recentOtp.length == 0) {
         // otp not found
@@ -152,8 +152,8 @@
         accountType,
         additionalDetails: profileDetails._id,
         image: `https://api.dicebear.com/5.x/initials/svg?seed=${firstName}${lastName}`
-
       });
+
       // return res
       return res.status(200).json({
         success: true,
@@ -161,7 +161,7 @@
         user:user
       });
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       return res.status(403).json({
         success: false,
         message: "Signup: User is not Registered with Us Please SignUp to Continue",
@@ -201,7 +201,7 @@
           accountType: user.accountType,
         };
         const token = jwt.sign(payload, process.env.JWT_SECRET, {
-          expiresIn : "4  h",
+          expiresIn : "4h",
         });
         user.token = token;
         user.password = undefined;
@@ -223,8 +223,7 @@
           message: "Password is incorrect in login ",
         });
       }
-    } catch (err) {
-      console.log(err);
+    } catch (err){
       return res.status(403).json({
         success: false,
         message: "Login failure please try again later",
@@ -278,10 +277,9 @@
 					`Password updated successfully for ${updatedUserDetails.firstName} ${updatedUserDetails.lastName}`
 				)
 			);
-			console.log("Email sent successfully:", emailResponse.response);
+		
 		} catch (error) {
 			// If there's an error sending the email, log the error and return a 500 (Internal Server Error) error
-			console.error("Error occurred while sending email:", error);
 			return res.status(500).json({
 				success: false,
 				message: "Error occurred while sending email",
@@ -295,7 +293,6 @@
 			.json({ success: true, message: "Password updated successfully" });
 	} catch (error) {
 		// If there's an error updating the password, log the error and return a 500 (Internal Server Error) error
-		console.error("Error occurred while updating password:", error);
 		return res.status(500).json({
 			success: false,
 			message: "Error occurred while updating password",

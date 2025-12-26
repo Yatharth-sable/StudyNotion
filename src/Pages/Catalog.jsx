@@ -28,7 +28,7 @@ const Catalog = () => {
           setCategoryId(null); // explicitly set null, not ""
         }
       } catch (err) {
-        console.log("Error fetching categories:", err);
+        console.log("Error fetching categories:", err.message);
       }
     };
     getCategoryDetails();
@@ -42,13 +42,13 @@ const Catalog = () => {
         console.log("this is the response", res);
         setCatalogPageData(res);
       } catch (err) {
-        console.log("Error fetching catalog page data:", err);
+        console.log("Error fetching catalog page data:", err.message);
       }
     };
     fetchCatalogData();
   }, [categoryId]);
 
-  console.log("this is mostselling course", catalogPageData?.data?.mostSellingCourses);
+
 
   if (!catalogPageData) {
     return <div className="text-white text-center py-10">Loading...</div>;

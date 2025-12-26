@@ -2,7 +2,7 @@
  const User = require("../models/User")
  const mailSender = require("../utils/mailSender");
  const bcrypt = require("bcrypt")
- const crypto = require("crypto")
+ const crypto = require("crypto") 
 
  // reset password token 
  exports.resetPasswordToken = async (req,res) => {
@@ -39,7 +39,7 @@
       `Your Link for email verification is ${url}. Please click this url to reset your password.`
     )
   return   res.json({
-			success: true,
+			success: true, 
 			message:
 				"Email Sent Successfully, Please Check Your Email to Continue Further",
       url:url
@@ -87,14 +87,14 @@ catch(err){
      }
 
      // hash the password 
-     const hasedPassord = await bcrypt.hash(password,10)
+     const hasedPassord = await bcrypt.hash(password,10)  
 
     //  // password update
     //  await User.findOneAndUpdate(
     //     {token:token},
     //     {password:hasedPassord},
     //     {new:true},
-    //  );
+    //  );  
 
       // ✅ Update password and clear token
     userDetails.password = hasedPassord;

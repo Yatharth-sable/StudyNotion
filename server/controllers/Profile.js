@@ -55,7 +55,6 @@ exports.updateProfile = async (req, res) => {
       data: updatedUser, // ✅ send full updated user object
     });
   } catch (err) {
-    console.log(err);
     return res.status(500).json({
       success: false,
       message: "Error in Profile Updation",
@@ -73,7 +72,6 @@ exports.deleteAccount = async (req, res) => {
 			// 	console.log("The answer to life, the universe, and everything!");
 			// });
 			// console.log(job);
-			console.log("Printing ID: ", req.user.id);
 			const id = req.user.id;
 			
 			const user = await User.findById({ _id: id });
@@ -93,7 +91,6 @@ exports.deleteAccount = async (req, res) => {
 				message: "User deleted successfully",
 			});
 		} catch (error) {
-			console.log(error);
 			res
 				.status(500)
 				.json({ success: false, message: "User Cannot be deleted successfully" });
@@ -104,11 +101,9 @@ exports.deleteAccount = async (req, res) => {
 exports.getAllUserDetails = async (req, res) => {
 	try {
     const id = req.user.id;
-    console.log(id) 
 		const userDetails = await User.findById(id)
 			.populate("additionalDetails")
 			.exec();
-		console.log(userDetails);
 		res.status(200).json({
 			success: true,
 			message: "User Data fetched successfully",
@@ -133,7 +128,6 @@ exports.getAllUserDetails = async (req, res) => {
 			1000,
 			1000
 		)
-		console.log(image)
 		const updatedProfile = await User.findByIdAndUpdate(
 			{ _id: userId },
 			{ image: image.secure_url },
@@ -212,7 +206,6 @@ exports.instructorDashboard = async(req,res) => {
  
   }
    catch (err) {
-    console.log(err)
     res.status(500).json({
       message:err.message
     })

@@ -10,6 +10,8 @@ const {
   SEND_PAYMENT_SUCCESS_EMAIL_API,
 } = studentEndpoints;
 
+
+
 function loadScript(src) {
   return new Promise((resolve) => {
     const script = document.createElement("script");
@@ -51,10 +53,10 @@ export async function buyCourse(
         Authorization: `Bearer ${token}`,
       }
     );
-    console.log(orderResponse)
     if (!orderResponse.data.success) {
       throw new Error(orderResponse.data.message || "Could not initiate order");
     }
+
 
     // options
     const options = {
@@ -85,12 +87,12 @@ export async function buyCourse(
      paymentObject.open();
      paymentObject.on("payment.failed",function(response){
         toast.error("oops payment failed")
-        console.log(response.error);
+       
      })
 
 
   } catch (err) {
-    console.log("Payment api error", err);
+  
     toast.error("Could not make payment");
   } finally {
     toast.dismiss(toastId);
@@ -112,7 +114,7 @@ async function sendPaymentSuccessEmail(response, amount, token) {
       }
     );
   } catch (err) {
-    console.log("Payment Success email error", err);
+    
   }
 }
 
@@ -124,14 +126,15 @@ async function verifyPayment(bodyData, token, navigate, dispatch) {
     const response = await apiConnector("POST", COURSE_VERIFY_API, bodyData, {
       Authorization: `Bearer ${token}`,
     });
-    if (!response.data.success) {
-      throw new Error(response.data.message);
-    }
+    
+
+    // if (!response.data.success) {
+    //   throw new Error(response.data.message);
+    // }
     toast.success("Payment Successful , You are added to the course");
     navigate("/dashboard/enrolled-courses");
     dispatch(resetCart());
   } catch (err) {
-    console.log("Payment Success email error", err);
     toast.error("Could not verify payment");
   } finally {
     dispatch(setPaymentLoading(false));

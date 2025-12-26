@@ -99,7 +99,7 @@ const SubSectionModal = ({ modalData,setModalData,add = false,view = false,edit 
 
     setLoading(true);
     const result = await createSubSection(formData, token);
-    console.log("lectureVideo value:", data.lectureVideo);
+    // console.log("lectureVideo value:", data.lectureVideo);
 console.log("FormData keys:");
 for (let pair of formData.entries()) {
   console.log(pair[0], pair[1]);

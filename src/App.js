@@ -41,8 +41,7 @@ function App() {
 
   return (
     <div className="flex flex-col font-inter w-full min-h-[100vh] bg-richblack-900 overflow-x-hidden">
-
-      <Navbar></Navbar>
+      <Navbar></Navbar> 
       <Routes>
         <Route path="/" element={<Home isLoggedIn={isLoggedIn}></Home>}></Route>
         <Route path="catalog/:catalogName" element={<Catalog></Catalog>}></Route>

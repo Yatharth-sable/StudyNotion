@@ -60,8 +60,6 @@ export default function ChipInput({
     setChips(newChips);
   };
 
-  console.log("Form Data before submit:", getValues());
-
   // Render the component
   return (
     <div className="flex flex-col space-y-2">

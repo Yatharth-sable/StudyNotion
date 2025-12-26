@@ -3,6 +3,7 @@ import InstructorImage from "../../../assets/Images/Instructor.png";
 import Highlight from "./Highlight";
 import { FaLocationArrow } from "react-icons/fa6";
 import CTAButton from "./CTAButton";
+import { Link } from "react-router-dom";
 
 const InstructorSection = () => {
   return (
@@ -29,7 +30,8 @@ const InstructorSection = () => {
 
             <CTAButton active={true} linkto={"signup"}>
               <div className="flex flex-row items-center gap-2">
-                Start Teaching Today
+                {/* Start Teaching Today */}
+               Start Teaching Today
                 <FaLocationArrow></FaLocationArrow>
               </div>
             </CTAButton>

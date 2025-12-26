@@ -37,14 +37,14 @@ const EnrolledCourses = () => {
           {/* Table Headers */}
           <div className="grid grid-cols-12  items-center bg-richblack-800 p-3 rounded-md gap-4 text-gray-400 font-medium  pb-2">
             <p className="col-span-6">Course Name</p>
-            <p className="col-span-2">Duration</p>
-            <p className="col-span-4">Progress</p>
+            {/* <p className="col-span-2">Duration</p> */}
+            <p className="col-span-6 right-0 pl-40">Progress</p>
           </div>
 
           {/* Course Cards */}
           {enrolledcourses.map((course, index) => (
             <div
-              key={index}
+              key={course._id}
               className="grid grid-cols-12 gap-4 border-b border-richblack-700 items-center bg-gray-900 p-4 rounded-lg hover:bg-gray-800 transition"
             >
               
@@ -53,7 +53,7 @@ const EnrolledCourses = () => {
                 navigate(
                   `/view-course/${course?._id}/section/${course.courseContent?.[0]._id}/sub-section/${course.courseContent?.[0]?.subSection?.[0]._id}`
                 )
-                      console.log("fetch Enrolled Courses",course.courseContent);
+              
 
 
               }}

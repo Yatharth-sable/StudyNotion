@@ -139,12 +139,9 @@ const CourseInformationForm = () => {
 
     setLoading(true);
     const result = await addCourseDetails(formData, token);
-    console.log("API raw result:", result);
-
     if (result) {
       dispatch(setStep(2));
       dispatch(setCourse(result));
-      console.log("going to step 2");
     }
     setLoading(false);
   };

@@ -14,7 +14,6 @@ exports.createCategory = async (req, res) => {
 
     const categoryDetails = await Category.create({ name, description })
 
-    console.log("Category Details =>", categoryDetails)
     return res.status(201).json({
       success: true,
       message: "Category created successfully",
@@ -36,7 +35,6 @@ exports.showAllCategories = async (req, res) => {
       data: categories,
     });
   } catch (error) {
-    console.error("🔥 SHOW ALL CATEGORIES ERROR:", error);
     return res.status(500).json({
       success: false,
       message: "Server error while fetching categories",
@@ -119,7 +117,6 @@ exports.categoryPageDetails = async (req, res) => {
       mostSellingCourses,
     });
   } catch (error) {
-    console.log(error);
     return res.status(500).json({
       success: false,
       message: "Internal server error",

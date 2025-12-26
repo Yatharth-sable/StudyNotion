@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express")
 const app = express();
 
@@ -11,10 +12,8 @@ const database = require("./config/database")
   
 const cookieParser = require("cookie-parser")
 const fileUpload = require("express-fileupload")
-const dotenv = require("dotenv")
 const cors = require("cors");
 
-dotenv.config();
 const PORT = process.env.PORT || 3000
 
 // middleware
@@ -35,7 +34,7 @@ app.use(
         callback(new Error("Not allowed by CORS"));
       }
     },
-    credentials: true,
+    credentials: true,  
   })
 );
 
@@ -51,7 +50,7 @@ database.connect();
 
 // connection with the cloudinary
 cloudinaryConnect();
-
+console.log("this is mail user2",process.env.MAIL_USER)
 // api route mount krna hai 
 app.use("/api/v1/auth",userRoutes)
 app.use("/api/v1/profile",profileRoutes)
@@ -81,12 +80,13 @@ app.get("/test-cloudinary", async (req, res) => {
       message: "Cloudinary working fine 🚀",
       url: result.secure_url,
     });
+    
   } catch (err) {
     console.error("Cloudinary error:", err);
     return res.status(500).json({
       success: false,
       message: "Cloudinary not working ❌",
-      error: err.message,
+      // error: err.message,
     });
   }
 });

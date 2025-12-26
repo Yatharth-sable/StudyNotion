@@ -6,10 +6,6 @@ exports.updateCourseProgress = async (req, res) => {
     const { courseId, subSectionId } = req.body;
     const userId = req.user.id;
 
-    console.log("userId:", userId);
-    console.log("courseId:", courseId);
-    console.log("subSectionId:", subSectionId);
-
     // 🔹 Check if subsection is valid
     const subSection = await SubSection.findById(subSectionId);
     if (!subSection) {

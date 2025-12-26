@@ -7,9 +7,10 @@ const InstructorChart = ({ courses }) => {
   const [activeTab, setActiveTab] = useState("students");
 
   const chartData = courses.map((course) => ({
+    
     name:
-      course.courseName.length > 20
-        ? course.courseName.substring(0, 20) + "..."
+      course.courseName.length > 15
+        ? course.courseName.substring(0, 5) + "..."
         : course.courseName,
     value:
       activeTab === "students"

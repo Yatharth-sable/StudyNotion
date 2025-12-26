@@ -65,7 +65,6 @@ const CourseDetails = () => {
       </div>
     );
   }
-  console.log("this is course data", courseData);
 
   const handleBuyCourse = () => {
     if (token) {

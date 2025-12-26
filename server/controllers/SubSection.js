@@ -55,7 +55,7 @@
         updatedCourseDetails: updatedCourse,
       });
     } catch (error) {
-      console.error("Error creating new sub-section:", error);
+      console.error("Error creating new sub-section:", error.message);
       return res.status(500).json({
         success: false,
         message: "Internal server error",
@@ -111,7 +111,7 @@
         updatedCourseDetails: updatedCourse,
       });
     } catch (error) {
-      console.error("UPDATE SUBSECTION ERROR =>", error);
+      console.error("UPDATE SUBSECTION ERROR =>", error.message);
       return res.status(500).json({
         success: false,
         message: "An error occurred while updating the SubSection",
@@ -155,7 +155,7 @@
         updatedCourseDetails: updatedCourse,
       });
     } catch (error) {
-      console.error("DELETE SUBSECTION ERROR =>", error); 
+      console.error("DELETE SUBSECTION ERROR =>", error.message); 
       return res.status(500).json({
         success: false,
         message: "An error occurred while deleting the SubSection",

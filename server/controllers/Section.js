@@ -53,7 +53,7 @@ exports.createSection = async (req, res) => {
       updatedCourseDetails,
     });
   } catch (err) {
-    console.error("CREATE SECTION ERROR:", err);
+    console.error("CREATE SECTION ERROR:", err.message);
     return res.status(500).json({
       success: false,
       message: "Section creation failed, try again later",
@@ -99,7 +99,7 @@ exports.updateSection = async (req, res) => {
       updatedCourseDetails: updatedCourseDetails,
     });
   } catch (err) {
-    console.error("UPDATE SECTION ERROR:", err);
+    console.error("UPDATE SECTION ERROR:", err.message);
     res.status(400).json({
       success: false,
       message: "Section update failed",
@@ -146,7 +146,6 @@ exports.deleteSection = async (req, res) => {
       updatedCourseDetails,   // ✅ unified response
     });
   } catch (err) {
-    console.error("DELETE SECTION ERROR:", err);
     return res.status(400).json({
       success: false,
       message: "Section deletion failed",
